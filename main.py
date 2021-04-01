@@ -5,14 +5,11 @@ from scp import SCPClient
 from getpass import getpass
 
 """TODO:
-implement downloading from remote
-implement command line argument functionality for upload/download
-implement password getting from user in python book
-functionify the program
-if possible classify it
-handle TimeoutError for ssh"""
+Make class for client
+"""
 
-USAGE = "script.py [--upload | --download] [--username <username>] <host> [<localpath> | <remotepath>] [<remotepath> | <localpath>]"
+USAGE = "script.py [--upload | --download] [--username <username>] <host> " \
+        "[<localpath> | <remotepath>] [<remotepath> | <localpath>]"
 
 
 def upload(client, host, local_path, remote_path, username, password):
@@ -56,10 +53,15 @@ def main():
     client.load_system_host_keys()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
-    if up_down == 'up':
-        upload(client, host, local_path, remote_path, user, password)
-    elif up_down == 'down':
-        download(client, host, remote_path, local_path, user, password)
+    try:
+        if up_down == 'up':
+            upload(client, host, local_path, remote_path, user, password)
+        elif up_down == 'down':
+            download(client, host, remote_path, local_path, user, password)
+    except TimeoutError:
+        print(f"Couldn't connect to {host}")
+        print("Verify destination and try again.")
+        sys.exit(1)
 
 
 if __name__ == '__main__':

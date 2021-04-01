@@ -62,6 +62,8 @@ def main():
         print(f"Couldn't connect to {host}")
         print("Verify destination and try again.")
         sys.exit(1)
+    finally:
+        client.close()
 
 
 if __name__ == '__main__':

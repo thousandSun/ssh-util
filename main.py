@@ -4,10 +4,6 @@ from client import Client
 from scp import SCPException
 from getpass import getpass
 
-"""TODO:
-Make class for client
-"""
-
 USAGE = "script.py [--upload | --download] [--username <username>] <host> " \
         "[<localpath> | <remotepath>] [<remotepath> | <localpath>]"
 

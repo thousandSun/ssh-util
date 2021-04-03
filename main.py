@@ -1,5 +1,6 @@
 import sys
 import os
+import socket
 from client import Client
 from scp import SCPException
 from getpass import getpass
@@ -61,6 +62,8 @@ def main():
         print("Failed to process file")
         print("Verify file and try again")
         sys.exit(1)
+    except socket.timeout:
+        print(f"The connection to {host} timed out.")
     finally:
         client.close_client()
 

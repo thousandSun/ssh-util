@@ -17,7 +17,7 @@ class Client:
         client = paramiko.SSHClient()
         client.load_system_host_keys()
         client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        client.connect(self.__host, username=self.__username, password=self.__password)
+        # client.connect(self.__host, username=self.__username, password=self.__password, timeout=10)
         self.__client = client
 
     def set_local_path(self, local_path: str):
@@ -30,13 +30,13 @@ class Client:
         self.__recursive = recursive
 
     def upload(self):
-        self.__client.connect(self.__host, username=self.__username, password=self.__password)
+        self.__client.connect(self.__host, username=self.__username, password=self.__password, timeout=10)
         with SCPClient(self.__client.get_transport()) as scp:
             scp.put(self.__local_path, self.__remote_path, recursive=self.__recursive)
         self.__client.close()
 
     def download(self):
-        self.__client.connect(self.__host, username=self.__username, password=self.__password)
+        self.__client.connect(self.__host, username=self.__username, password=self.__password, timeout=10)
         with SCPClient(self.__client.get_transport()) as scp:
             scp.get(self.__remote_path, self.__local_path, recursive=self.__recursive)
         self.__client.close()

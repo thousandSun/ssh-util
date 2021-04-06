@@ -5,7 +5,7 @@ from client import Client
 from scp import SCPException
 from getpass import getpass
 
-USAGE = "script.py [--upload | --download] [--username <username>] <host> " \
+USAGE = "main.py [--upload | --download] [--username <username>] <host> " \
         "[<localpath> | <remotepath>] [<remotepath> | <localpath>] [--recursive | -r]"
 
 

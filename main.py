@@ -2,8 +2,8 @@ import argparse
 import os
 import socket
 from client import Client
-from scp import SCPException
 from getpass import getpass
+from scp import SCPException
 
 
 def parse():

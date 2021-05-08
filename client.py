@@ -17,7 +17,6 @@ class Client:
         client = paramiko.SSHClient()
         client.load_system_host_keys()
         client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        # client.connect(self.__host, username=self.__username, password=self.__password, timeout=10)
         self.__client = client
 
     def set_local_path(self, local_path: str):
@@ -26,8 +25,8 @@ class Client:
     def set_remote_path(self, remote_path: str):
         self.__remote_path = remote_path
 
-    def set_recursive(self, recursive: bool):
-        self.__recursive = recursive
+    def set_recursive(self):
+        self.__recursive = True
 
     def upload(self):
         self.__client.connect(self.__host, username=self.__username, password=self.__password, timeout=10)

@@ -25,7 +25,7 @@ PATH variable.
 <p>After all dependencies have been installed,
 use the following to run the script from the directory
 <code>main.py</code> is located in.</p>
-<ul><li><code>python main.py [options]</code></li></ul>
+<ul><li><code>python main.py [hostname] [options]</code></li></ul>
 <p>List of options:</p>
 <ul>
     <li>host</li>
